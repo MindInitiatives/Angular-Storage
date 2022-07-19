@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <button mat-icon-button aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Angular Storage</span>
+    <span class="nav-spacer"></span>
+    <button (click)="logout()" mat-icon-button class="logout-icon" aria-label="icon-button with logout icon">
+        <span class="subheading-2">logout</span>&nbsp;&nbsp;
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+  <section class="container hero-wrap js-fullheight">
+    <div class="overlay"></div>
+  
+    <div fxLayout="row" fxLayoutAlign="center" class="flex-container no-gutters slider-text text-center">
+        <div class="container"
+        fxLayout="column"
+        fxLayoutAlign="center"
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0">
+    
+    <div fxFlex="100%">
+        <h1 class="mat-h1 mb-2 title">
+            Hi {{user.firstName}}!
+          </h1>
+          <p class="mat-caption">
+            You are now logged in
+          </p>
+          </div>
+          </div>
+    </div>
+</section>  

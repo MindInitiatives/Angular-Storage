@@ -1,0 +1,62 @@
+<section class="container hero-wrap js-fullheight">
+  <div class="overlay"></div>
+
+  <div fxLayout="row" fxLayoutAlign="center" class="flex-container no-gutters slider-text text-center">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-500p">
+        <h1 class="mb-3">Signup</h1>
+
+        <div class="container"
+            fxLayout="column"
+            fxLayoutAlign="center"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0">
+        
+        <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput required formControlName="firstName" name="firstname" type="text" placeholder="First Name">
+        </mat-form-field>
+        </div>
+
+        <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput required formControlName="lastName" name="lastname" type="text" placeholder="Last Name">
+        </mat-form-field>
+        </div>
+
+        <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput required formControlName="username" name="username" type="text" placeholder="User Name">
+        </mat-form-field>
+        </div>
+
+        <div fxFlex="100%">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput required formControlName="password" name="password" placeholder="Password"
+            [type]="showPassword ? 'password' : 'text'">
+          <button mat-icon-button matSuffix color="primary" type='button' (click)="showPassword = !showPassword"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showPassword">
+            <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        </div>
+
+        <button mat-stroked-button type="submit" [disabled]="loading" class="btn-block bg-primary py-1">Create an
+          account</button>
+
+        </div>
+
+      </form>
+
+    </div>
+  <footer class="footer" role="contentinfo">
+    <div class="row justify-content-center text-center">
+      <div class="credits">
+
+        <span>Already have an account?&nbsp;</span>
+        <a mat-button class="primary-color" [routerLink]="['/home']">Log in</a>
+      </div>
+    </div>
+
+  </footer>
+</section>
