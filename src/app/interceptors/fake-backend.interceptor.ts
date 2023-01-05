@@ -37,7 +37,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = body;
             const user = users.find((x: { username: any; password: any; }) => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) return error({ status: 404, error: { message: 'Username or password is incorrect' } });
             return ok({
                 id: user.id,
                 username: user.username,
@@ -51,7 +51,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const user = body
 
             if (users.find((x: { username: any; }) => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+                return error({ status: 500, error: { message: 'Username "' + user.username + '" is already taken' } })
             }
 
             user.id = users.length ? Math.max(...users.map((x: { id: any; }) => x.id)) + 1 : 1;
@@ -73,19 +73,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return of(new HttpResponse({ status: 200, body }))
         }
 
-        function error(message: string) {
-            const errorWithTimestamp$ = throwError(() => {
-                const error: any = new Error();
-                error.timestamp = Date.now();
-                error.message = message;
-                error.status = 500;
+        function error(body: any) {
+            const errorBody = throwError(() => {
+                let error: any = new Error();
+                Object.assign(error, { status: body.status, error: { message: body.error.message } });
                 return error;
               });
-              return errorWithTimestamp$;
+              return errorBody;
         }
 
         function unauthorized() {
-            return throwError(() => { `status: 401, error: { message: 'Unauthorised' }` });
+            return error({ status: 401, error: { message: 'Unauthorised' } });
         }
 
         function isLoggedIn() {

@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
       if (this.form.invalid) {
           return;
       }
-      console.log(this.f);
       
 
       this.loading = true;
@@ -66,7 +65,7 @@ export class HomeComponent implements OnInit {
               error: (error) => {
                 console.log(error);
                 
-                this._snackBar.open(error, 'dismiss', {
+                this._snackBar.open(error.error.message, 'dismiss', {
                   duration: 3000,
                   horizontalPosition: this.horizontalPosition,
                   verticalPosition: this.verticalPosition,
