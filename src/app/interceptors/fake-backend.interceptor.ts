@@ -74,7 +74,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function error(message: string) {
-            return throwError(() => { `error: ${ message }` });
+            const errorWithTimestamp$ = throwError(() => {
+                const error: any = new Error();
+                error.timestamp = Date.now();
+                error.message = message;
+                error.status = 500;
+                return error;
+              });
+              return errorWithTimestamp$;
         }
 
         function unauthorized() {

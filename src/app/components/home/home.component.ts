@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
                   this.router.navigate(["/user-details"])
                 }
               },
-              error: error => {
+              error: (error) => {
                 console.log(error);
                 
                 this._snackBar.open(error, 'dismiss', {
