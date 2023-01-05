@@ -56,8 +56,8 @@ export class SignUpComponent implements OnInit {
                 });
                   this.router.navigate(['../home'], { relativeTo: this.route });
               },
-              error: error => {
-                this._snackBar.open(error, 'dismiss', {
+              error: (error) => {
+                this._snackBar.open(error.error.message, 'dismiss', {
                   duration: 3000,
                   horizontalPosition: this.horizontalPosition,
                   verticalPosition: this.verticalPosition,
